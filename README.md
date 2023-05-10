@@ -1,7 +1,7 @@
 # Mundexp - Explore o Mundo Melhor 
 
 Projeto acadêmico individual Mundexp
----
+
 A MUNDEXP surgiu em 2023 com o propósito de fornecer um compartilhamento de informções sobre viajens, custos e cultura aos novos viajantes, estudantes, ou apenas curiosos. Um tema pouco abordado atualmente, mas bem desenvolvido tecnologicamente pela MUNDEXP. 
 
 ⊛ Missão: Realizar conexões, bate-papos sobre experiências de viajens entre viajantes e gráficos informativos.<br/>
