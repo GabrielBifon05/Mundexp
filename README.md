@@ -4,9 +4,9 @@ Projeto acadêmico individual Mundexp
 ---
 A MUNDEXP surgiu em 2023 com o propósito de fornecer um compartilhamento de informções sobre viajens, custos e cultura aos novos viajantes, estudantes, ou apenas curiosos. Um tema pouco abordado atualmente, mas bem desenvolvido tecnologicamente pela MUNDEXP. 
 
-⊛ Missão: Realizar conexões, bate-papos sobre experiências de viajens entre viajantes e gráficos informativos. 
-⊛ Visão: Fornecer confiança para viajantes nacionais ou internacionais quando forem experenciar novos lugares. 
-⊛ Valores: Transparência e respeito (principalmente por outras nacionalidades e regionalidades). 
+⊛ Missão: Realizar conexões, bate-papos sobre experiências de viajens entre viajantes e gráficos informativos.<br/>
+⊛ Visão: Fornecer confiança para viajantes nacionais ou internacionais quando forem experenciar novos lugares. <br/>
+⊛ Valores: Transparência e respeito (principalmente por outras nacionalidades e regionalidades). <br/>
 
 ### Justificativa  
 - Alavancar em até 50% o número de viajantes; 
