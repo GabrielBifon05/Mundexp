@@ -34,7 +34,9 @@ A MUNDEXP surgiu em 2023 com o propósito de fornecer um compartilhamento de inf
   
 ### Premissas  
 - Infraestutura em nuvem (Microsoft Azure);
-- Desenvolvido em HTML CSS e JS.
+- Desenvolvido em HTML CSS e JS;
+- O local deverá possuir uma rede Wi-fi adequada para uso do Website.
 
 ### Restrições  
-- Moderadores poderão atualizar dados a serem comparados na dashboard e dados a serem simplesmente informados em texto.
+- Moderadores poderão atualizar dados a serem comparados na dashboard e dados a serem simplesmente informados em texto;
+- Equipe de suporte (para uso geral da plataforma) disponível em horário comercial semanal.
