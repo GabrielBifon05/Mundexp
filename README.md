@@ -1,4 +1,4 @@
-# Mundexp - Explore o Mundo Melhor
+# Mundexp - Explore o Mundo Melhor ![logo](https://github.com/GabrielBifon05/Mundexp/assets/125585322/bc8c81df-6c91-46d8-99aa-63207c57c0df)
 
 Projeto acadêmico individual Mundexp
 ---
