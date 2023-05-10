@@ -20,17 +20,17 @@ A MUNDEXP surgiu em 2023 com o propósito de fornecer um compartilhamento de inf
 
 ### Escopo  
 - Desenvolver de Website com: 
-   Cadastro e Login para moderadores; 
-   Dashboard comparativa entre países; 
-   Fórum público; 
-   Única versão para Desktops; 
+  -- Cadastro e Login para moderadores; 
+  -- Dashboard comparativa entre países; 
+  -- Fórum público; 
+  -- Única versão para Desktops; 
 - Compatível com navegadores baseados em Chromium; 
 - Desenvolver de Banco de Dados. 
 
 ### Fora do Escopo 
 - Realização de manutenção: 
-  sobre dados informativos dos países;
-  sobre dados dos países a serem comparados.
+  -- sobre dados informativos dos países;
+  -- sobre dados dos países a serem comparados.
   
 ### Premissas  
 - Infraestutura em nuvem (Microsoft Azure);
