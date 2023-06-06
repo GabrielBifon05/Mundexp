@@ -1,4 +1,4 @@
--- Active: 1685970885102@@127.0.0.1@3306@dw
+-- Active: 1685970902320@@127.0.0.1@3306@CCO
 -- Arquivo de apoio, caso você queira criar tabelas como as aqui criadas para a API funcionar.
 -- Você precisa executar os comandos no banco de dados para criar as tabelas,
 -- ter este arquivo aqui não significa que a tabela em seu BD estará como abaixo!
@@ -6,29 +6,30 @@
 /*
 comandos para mysql - banco local - ambiente de desenvolvimento
 */
+DROP DATABASE mundexp;
 
 CREATE DATABASE mundexp;
 
 USE mundexp;
 
 CREATE TABLE tbUsuario (
-	idUsuario INT PRIMARY KEY AUTO_INCREMENT,
+	idUsuario INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
 	nomeUsuario VARCHAR(50),
 	emailUsuario VARCHAR(50),
 	senhaUsuario VARCHAR(50)
 );
 
 CREATE TABLE aviso (
-	idAviso INT AUTO_INCREMENT,
+	idAviso INT AUTO_INCREMENT NOT NULL,
 	tituloAviso VARCHAR(100),
 	descricaoAviso VARCHAR(150),
 	fk_usuario INT,
-	FOREIGN KEY (fk_usuario) REFERENCES tbUsuario(id),
+	FOREIGN KEY (fk_usuario) REFERENCES tbUsuario(idUsuario),
 	PRIMARY KEY (idAviso, fk_usuario)
 );
 
 create table tbPais (
-	idPais INT PRIMARY KEY AUTO_INCREMENT,
+	idPais INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
 	nomePais VARCHAR(45)
 );
 
@@ -43,11 +44,16 @@ create table medida (
 	multiculturaMedida DECIMAL(4,2),
 	inflacaoMedida DECIMAL(4,2),
 	fk_pais INT,
-	FOREIGN KEY (fk_pais) REFERENCES tbPais(id),
+	FOREIGN KEY (fk_pais) REFERENCES tbPais(idPais),
 	PRIMARY KEY (idMedida, fk_pais)
 );
 
+INSERT INTO tbPais VALUES (NULL, 'Canadá'),
+						  (NULL, 'Estados Unidos'),
+						  (NULL, 'Alemanha'),
+						  (NULL, 'Emirados Árabes Unidos');
 
+INSERT INTO tbMedida VALUES (),
 /*
 comando para sql server - banco remoto - ambiente de produção
 */

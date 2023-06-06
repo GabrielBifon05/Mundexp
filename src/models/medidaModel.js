@@ -1,27 +1,29 @@
 var database = require("../database/config");
 
-function buscarUltimasMedidas(idAquario, limite_linhas) {
+function buscarUltimasMedidas(idPais, limite_linhas) {
 
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
         instrucaoSql = `select top ${limite_linhas}
-        dht11_temperatura as temperatura, 
-        dht11_umidade as umidade,  
-                        momento,
-                        FORMAT(momento, 'HH:mm:ss') as momento_grafico
+        temepraturaMedida as temperatura, 
+        poder_compraMedida as poder_compra,  
+        religiosidadeMedida as religiosidade,
+        multiculturaMedida as multicultura,
+        inflacaoMedida as inflacao
                     from medida
-                    where fk_aquario = ${idAquario}
-                    order by id desc`;
+                    where fk_pais = ${idPais}
+                    order by idMedida desc`;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `select 
-        dht11_temperatura as temperatura, 
-        dht11_umidade as umidade,
-                        momento,
-                        DATE_FORMAT(momento,'%H:%i:%s') as momento_grafico
+        temepraturaMedida as temperatura, 
+        poder_compraMedida as poder_compra,  
+        religiosidadeMedida as religiosidade,
+        multiculturaMedida as multicultura,
+        inflacaoMedida as inflacao
                     from medida
-                    where fk_aquario = ${idAquario}
-                    order by id desc limit ${limite_linhas}`;
+                    where fk_pais = ${idPais}
+                    order by idPais desc limit ${limite_linhas}`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -31,26 +33,30 @@ function buscarUltimasMedidas(idAquario, limite_linhas) {
     return database.executar(instrucaoSql);
 }
 
-function buscarMedidasEmTempoReal(idAquario) {
+function buscarMedidasEmTempoReal(idPais) {
 
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
         instrucaoSql = `select top 1
-        dht11_temperatura as temperatura, 
-        dht11_umidade as umidade,  
-                        CONVERT(varchar, momento, 108) as momento_grafico, 
-                        fk_aquario 
-                        from medida where fk_aquario = ${idAquario} 
+        temepraturaMedida as temperatura, 
+        poder_compraMedida as poder_compra,  
+        religiosidadeMedida as religiosidade,
+        multiculturaMedida as multicultura,
+        inflacaoMedida as inflacao,
+        fk_pais,
+                    from medida where fk_pais = ${idPais} 
                     order by id desc`;
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `select 
-        dht11_temperatura as temperatura, 
-        dht11_umidade as umidade,
-                        DATE_FORMAT(momento,'%H:%i:%s') as momento_grafico, 
-                        fk_aquario 
-                        from medida where fk_aquario = ${idAquario} 
+        temepraturaMedida as temperatura, 
+        poder_compraMedida as poder_compra,  
+        religiosidadeMedida as religiosidade,
+        multiculturaMedida as multicultura,
+        inflacaoMedida as inflacao,
+        fk_pais,
+                    from medida where fk_pais = ${idPais} 
                     order by id desc limit 1`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
