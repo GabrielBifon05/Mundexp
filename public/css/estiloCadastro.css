@@ -17,17 +17,17 @@ body{
     justify-content: center;
     align-items: center;
     height: 100%;
+    
   }
   
   .card {
     width: 20%;
-    background-color: #e5e5e5;
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     flex-direction: column;
-    color: palevioletred;
+    color: #B300FF;
     row-gap: 20px;
   }
   
@@ -54,12 +54,13 @@ body{
   }
   
   .formulario span {
+    margin-top: 10px;
     font-size: 15px;
     font-weight: 800;
   }
   
   .formulario input {
-    border: 2px solid #32b9cd;
+    border: 2px solid #6B7AFF;
     height: 30px;
     text-align: center;
     border-radius: 10px;
@@ -72,6 +73,7 @@ body{
   }
   
   .botao {
+    margin: 10px;
     cursor: pointer;
     font-family: "Barlow", sans-serif;
     border: 0;
@@ -79,7 +81,7 @@ body{
     font-weight: 600;
     font-size: 18px;
     color: #fff;
-    background-color: #e6005a;
+    background-color: #32B892;
     width: 120px;
     height: 30px;
     align-self: center;
@@ -122,12 +124,9 @@ body{
   }
 
 /* Início FOOTER */
-.footer{
-  margin-top: 3rem;
-    height: 5rem;
-    background-color: #20005c;
-    color: aliceblue;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+footer {
+  position: fixed;
+  bottom:0;
+  left:0;
+  width: 100%;
 }

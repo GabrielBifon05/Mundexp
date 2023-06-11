@@ -37,10 +37,10 @@ SELECT*FROM tbUsuario;
 /* esta tabela deve estar de acordo com o que está em INSERT de sua API do arduino - dat-acqu-ino */
 
 create table medida (
-	idMedida INT AUTO_INCREMENT,
+	idMedida INT AUTO_INCREMENT NOT NULL,
 	temepraturaMedida DECIMAL(4,2),
 	poder_compraMedida DECIMAL(4,2),
-	religiosidadeMedida DECIMAL(4,2),
+	religiososMedida DECIMAL(4,2),
 	multiculturaMedida DECIMAL(4,2),
 	inflacaoMedida DECIMAL(4,2),
 	fk_pais INT,
@@ -53,7 +53,10 @@ INSERT INTO tbPais VALUES (NULL, 'Canadá'),
 						  (NULL, 'Alemanha'),
 						  (NULL, 'Emirados Árabes Unidos');
 
-INSERT INTO tbMedida VALUES (),
+INSERT INTO tbMedida VALUES (NULL, -12.7, 45, 76, 1, 3.8, 1),
+							(NULL, 13.9, 54.6, 71, 4, 5.9, 2),
+							(NULL, 10.6, 46.4, 72, 3, 2.7, 3),
+							(NULL, 25, 67.7, 99, 2, 3.9, 4);
 /*
 comando para sql server - banco remoto - ambiente de produção
 */
