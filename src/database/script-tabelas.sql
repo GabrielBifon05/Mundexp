@@ -21,18 +21,19 @@ CREATE TABLE tbUsuario (
 
 CREATE TABLE aviso (
 	idAviso INT AUTO_INCREMENT NOT NULL,
-	tituloAviso VARCHAR(100),
-	descricaoAviso VARCHAR(150),
+	titulo VARCHAR(100),
+	descricao VARCHAR(150),
 	fk_usuario INT,
 	FOREIGN KEY (fk_usuario) REFERENCES tbUsuario(idUsuario),
 	PRIMARY KEY (idAviso, fk_usuario)
 );
 
+select*from aviso;
+
 create table tbPais (
 	idPais INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
 	nomePais VARCHAR(45)
 );
-
 SELECT*FROM tbUsuario;	
 /* esta tabela deve estar de acordo com o que está em INSERT de sua API do arduino - dat-acqu-ino */
 
