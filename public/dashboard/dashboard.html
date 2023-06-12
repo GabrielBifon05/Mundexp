@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="dashboards.css">
     <script src="../js/funcoes.js"></script>
-    <script src="./alerta.js"></script>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link
@@ -66,9 +65,7 @@
             </div>
             <div id="graficos">
                 <div id="grafico1" class="display-block">
-                    <h3 class="tituloGraficos">
-                        <span id="tituloPais1">123</span>
-                    </h3>
+                    
                     <div class="graph">
                         <canvas id="myChartCanvas1"></canvas>
                     </div>
@@ -135,11 +132,10 @@
         obterDadosGrafico(4)
     }
 
-    verificar_autenticacao();
 
     function alterarTitulo(nomePais) {
         var tituloPais = document.getElementById(`tituloPais${nomePais}`)
-        tituloPais.innerHTML = `Últimas medidas de Temperatura e Umidade de <span style='color: rgb(50,184,146)'> ${nomePais} </span>`
+        
     }
 
     function exibirPais(idPais) {
@@ -183,21 +179,20 @@
 
     //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
     //     Para ajustar o "select", ajuste o comando sql em src/models
-    function obterDadosGrafico(idMedida) {
+    function obterDadosGrafico(idPais) {
 
-        alterarTitulo(idMedida)
+        alterarTitulo(idPais)
 
         if (proximaAtualizacao != undefined) {
             clearTimeout(proximaAtualizacao);
         }
 
-        fetch(`/medidas/ultimas/${idMedida}`, { cache: 'no-store' }).then(function (response) {
+        fetch(`/medidas/ultimas/${idPais}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     resposta.reverse();
-
-                    plotarGrafico(resposta, idMedida);
+                    plotarGrafico(resposta, idPais);
                     
                 });
             } else {
@@ -226,35 +221,35 @@
                 label: 'Temperatura',
                 data: [],
                 fill: false,
-                borderColor: 'rgb(75, 192, 192)',
+                backgroundColor: 'rgb(199, 52, 52)',
                 tension: 0.1
             },
             {
                 label: 'Poder de Compra',
                 data: [],
                 fill: false,
-                borderColor: 'rgb(199, 52, 52)',
+                backgroundColor: 'rgb(75, 192, 192)',
                 tension: 0.1
-            }
+            },
             {
                 label: 'Religiosidade',
                 data: [],
                 fill: false,
-                borderColor: 'rgb(209, 52, 52)',
+                backgroundColor: 'rgb(0, 122, 0)',
                 tension: 0.1
-            }
+            },
             {
                 label: 'Multicultura',
                 data: [],
                 fill: false,
-                borderColor: 'rgb(179, 52, 52)',
+                backgroundColor: 'rgb(255, 127, 0)',
                 tension: 0.1
-            }
+            },
             {
                 label: 'Inflação',
                 data: [],
                 fill: false,
-                borderColor: 'rgb(159, 52, 52)',
+                backgroundColor: 'rgb(255, 51, 51)',
                 tension: 0.1
             }]
         };
@@ -266,12 +261,12 @@
         // Inserindo valores recebidos em estrutura para plotar o gráfico
         for (i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
-            labels.push(registro.momento_grafico);
-            dados.datasets[0].data.push(registro.umidade);
-            dados.datasets[1].data.push(registro.temperatura);
-            dados.datasets[2].data.push(registro.temperatura);
-            dados.datasets[3].data.push(registro.temperatura);
-            dados.datasets[4].data.push(registro.temperatura);
+            labels.push(registro);
+            dados.datasets[0].data.push(registro.temperatura);
+            dados.datasets[1].data.push(registro.poder_compra);
+            dados.datasets[2].data.push(registro.religiosidade);
+            dados.datasets[3].data.push(registro.multicultura);
+            dados.datasets[4].data.push(registro.inflacao);
         }
 
         console.log('----------------------------------------------')
@@ -284,7 +279,7 @@
 
         // Criando estrutura para plotar gráfico - config
         const config = {
-            type: 'line',
+            type: 'bar',
             data: dados,
         };
 
@@ -294,7 +289,9 @@
             config
         );
 
-        setTimeout(() => atualizarGrafico(idPais, dados, myChart), 2000);
+        myChart.update();
+
+        // setTimeout(() => atualizarGrafico(idPais, dados, myChart), 2000);
     }
 
 
@@ -303,59 +300,68 @@
 
     //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
     //     Para ajustar o "select", ajuste o comando sql em src/models
-    function atualizarGrafico(idPais, dados, myChart) {
+    // function atualizarGrafico(idPais, dados, myChart) {
 
 
 
-        fetch(`/medidas/tempo-real/${idPais}`, { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (novoRegistro) {
+    //     fetch(`/medidas/tempo-real/${idPais}`, { cache: 'no-store' }).then(function (response) {
+    //         if (response.ok) {
+    //             response.json().then(function (novoRegistro) {
 
-                    obterdados(idPais);
-                    // alertar(novoRegistro, idPais);
-                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-                    console.log(`Dados atuais do gráfico:`);
-                    console.log(dados);
+                    
+    //                 // alertar(novoRegistro, idPais);
+    //                 console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+    //                 console.log(`Dados atuais do gráfico:`);
+    //                 console.log(dados);
 
-                    let avisoCaptura = document.getElementById(`avisoCaptura${idPais}`)
-                    avisoCaptura.innerHTML = ""
+    //                 let avisoCaptura = document.getElementById(`avisoCaptura${idPais}`)
+    //                 avisoCaptura.innerHTML = ""
 
 
-                    if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
-                        console.log("---------------------------------------------------------------")
-                        console.log("Como não há dados novos para captura, o gráfico não atualizará.")
-                        avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
-                        console.log("Horário do novo dado capturado:")
-                        console.log(novoRegistro[0].momento_grafico)
-                        console.log("Horário do último dado capturado:")
-                        console.log(dados.labels[dados.labels.length - 1])
-                        console.log("---------------------------------------------------------------")
-                    } else {
-                        // tirando e colocando valores no gráfico
-                        dados.labels.shift(); // apagar o primeiro
-                        dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
+    //                 if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
+    //                     console.log("---------------------------------------------------------------")
+    //                     console.log("Como não há dados novos para captura, o gráfico não atualizará.")
+    //                     avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
+    //                     console.log("Horário do novo dado capturado:")
+    //                     console.log(novoRegistro[0].momento_grafico)
+    //                     console.log("Horário do último dado capturado:")
+    //                     console.log(dados.labels[dados.labels.length - 1])
+    //                     console.log("---------------------------------------------------------------")
+    //                 } else {
+    //                     // tirando e colocando valores no gráfico
+    //                     dados.labels.shift(); // apagar o primeiro
+    //                     dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
 
-                        dados.datasets[0].data.shift();  // apagar o primeiro de umidade
-                        dados.datasets[0].data.push(novoRegistro[0].umidade); // incluir uma nova medida de umidade
+    //                     dados.datasets[0].data.shift();  // apagar o primeiro de umidade
+    //                     dados.datasets[0].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
 
-                        dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
-                        dados.datasets[1].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
+    //                     dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
+    //                     dados.datasets[1].data.push(novoRegistro[0].poder_compra); // incluir uma nova medida de poder de compra
 
-                        myChart.update();
-                    }
+    //                     dados.datasets[2].data.shift(); 
+    //                     dados.datasets[2].data.push(novoRegistro[0].religiosidade);
 
-                    // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                    proximaAtualizacao = setTimeout(() => atualizarGrafico(idPais, dados, myChart), 2000);
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => atualizarGrafico(idPais, dados, myChart), 2000);
-            }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
+    //                     dados.datasets[3].data.shift(); 
+    //                     dados.datasets[3].data.push(novoRegistro[0].multicultura);
 
-    }
+    //                     dados.datasets[4].data.shift(); 
+    //                     dados.datasets[4].data.push(novoRegistro[0].inflacao);
+
+    //                     myChart.update();
+    //                 }
+
+    //                 // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+    //                 proximaAtualizacao = setTimeout(() => atualizarGrafico(idPais, dados, myChart), 2000);
+    //             });
+    //         } else {
+    //             console.error('Nenhum dado encontrado ou erro na API');
+    //             // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+    //             proximaAtualizacao = setTimeout(() => atualizarGrafico(idPais, dados, myChart), 2000);
+    //         }
+    //     })
+    //         .catch(function (error) {
+    //             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+    //         });
+
+    // }
 </script>

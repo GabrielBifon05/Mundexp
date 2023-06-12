@@ -23,7 +23,7 @@ function buscarUltimasMedidas(idPais, limite_linhas) {
         inflacaoMedida as inflacao
                     from medida
                     where fk_pais = ${idPais}
-                    order by idMedida desc limit ${limite_linhas}`;
+                    order by idMedida`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -46,18 +46,18 @@ function buscarMedidasEmTempoReal(idPais) {
         inflacaoMedida as inflacao,
         fk_pais,
                     from medida where fk_pais = ${idPais} 
-                    order by id desc`;
+                    order by idMedida desc`;
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `select 
         temepraturaMedida as temperatura, 
         poder_compraMedida as poder_compra,  
-        religiosidadeMedida as religiosidade,
+        religiososMedida as religiosidade,
         multiculturaMedida as multicultura,
         inflacaoMedida as inflacao,
-        fk_pais,
+        fk_pais
                     from medida where fk_pais = ${idPais} 
-                    order by id desc limit 1`;
+                    order by idMedida desc limit 1`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
