@@ -18,12 +18,12 @@ function buscarUltimasMedidas(idPais, limite_linhas) {
         instrucaoSql = `select 
         temepraturaMedida as temperatura, 
         poder_compraMedida as poder_compra,  
-        religiosidadeMedida as religiosidade,
+        religiososMedida as religiosidade,
         multiculturaMedida as multicultura,
         inflacaoMedida as inflacao
                     from medida
                     where fk_pais = ${idPais}
-                    order by idPais desc limit ${limite_linhas}`;
+                    order by idMedida desc limit ${limite_linhas}`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return

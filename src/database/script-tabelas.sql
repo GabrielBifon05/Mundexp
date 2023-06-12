@@ -1,4 +1,4 @@
--- Active: 1685970902320@@127.0.0.1@3306@CCO
+-- Active: 1686569908275@@127.0.0.1@3306@bd_smfp
 -- Arquivo de apoio, caso você queira criar tabelas como as aqui criadas para a API funcionar.
 -- Você precisa executar os comandos no banco de dados para criar as tabelas,
 -- ter este arquivo aqui não significa que a tabela em seu BD estará como abaixo!
@@ -53,10 +53,20 @@ INSERT INTO tbPais VALUES (NULL, 'Canadá'),
 						  (NULL, 'Alemanha'),
 						  (NULL, 'Emirados Árabes Unidos');
 
-INSERT INTO tbMedida VALUES (NULL, -12.7, 45, 76, 1, 3.8, 1),
+INSERT INTO medida VALUES (NULL, -12.7, 45, 76, 1, 3.8, 1),
 							(NULL, 13.9, 54.6, 71, 4, 5.9, 2),
 							(NULL, 10.6, 46.4, 72, 3, 2.7, 3),
 							(NULL, 25, 67.7, 99, 2, 3.9, 4);
+
+select 
+        temepraturaMedida as temperatura, 
+        poder_compraMedida as poder_compra,  
+        religiososMedida as religiosidade,
+        multiculturaMedida as multicultura,
+        inflacaoMedida as inflacao
+                    from medida
+                    where fk_pais = ${idPais}
+                    order by idPais desc limit ${limite_linhas};
 /*
 comando para sql server - banco remoto - ambiente de produção
 */

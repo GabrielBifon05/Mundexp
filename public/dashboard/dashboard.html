@@ -183,21 +183,21 @@
 
     //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
     //     Para ajustar o "select", ajuste o comando sql em src/models
-    function obterDadosGrafico(idPais) {
+    function obterDadosGrafico(idMedida) {
 
-        alterarTitulo(idPais)
+        alterarTitulo(idMedida)
 
         if (proximaAtualizacao != undefined) {
             clearTimeout(proximaAtualizacao);
         }
 
-        fetch(`/medidas/ultimas/${idPais}`, { cache: 'no-store' }).then(function (response) {
+        fetch(`/medidas/ultimas/${idMedida}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     resposta.reverse();
 
-                    plotarGrafico(resposta, idPais);
+                    plotarGrafico(resposta, idMedida);
                     
                 });
             } else {
@@ -223,17 +223,38 @@
         let dados = {
             labels: labels,
             datasets: [{
-                label: 'Umidade',
+                label: 'Temperatura',
                 data: [],
                 fill: false,
                 borderColor: 'rgb(75, 192, 192)',
                 tension: 0.1
             },
             {
-                label: 'Temperatura',
+                label: 'Poder de Compra',
                 data: [],
                 fill: false,
                 borderColor: 'rgb(199, 52, 52)',
+                tension: 0.1
+            }
+            {
+                label: 'Religiosidade',
+                data: [],
+                fill: false,
+                borderColor: 'rgb(209, 52, 52)',
+                tension: 0.1
+            }
+            {
+                label: 'Multicultura',
+                data: [],
+                fill: false,
+                borderColor: 'rgb(179, 52, 52)',
+                tension: 0.1
+            }
+            {
+                label: 'Inflação',
+                data: [],
+                fill: false,
+                borderColor: 'rgb(159, 52, 52)',
                 tension: 0.1
             }]
         };
@@ -248,6 +269,9 @@
             labels.push(registro.momento_grafico);
             dados.datasets[0].data.push(registro.umidade);
             dados.datasets[1].data.push(registro.temperatura);
+            dados.datasets[2].data.push(registro.temperatura);
+            dados.datasets[3].data.push(registro.temperatura);
+            dados.datasets[4].data.push(registro.temperatura);
         }
 
         console.log('----------------------------------------------')
