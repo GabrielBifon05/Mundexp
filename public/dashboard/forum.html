@@ -19,7 +19,7 @@
         rel="stylesheet">
 </head>
 
-<body onload="validarSessao(), atualizarFeed()" style="background-color: #161618;">
+<body onload="validarSessao();" style="background-color: #161618;">
     <!-- <body onload="validarSessao()"> -->
 
     <div class="janela">
@@ -28,10 +28,6 @@
         <div class="header-left">
 
             <a href="../index.html"><img src="../assets/img/logo.png" title="Vivendo Viagens"></a>
-
-            <div class="hello">
-                <h4>Olá, <span id="b_usuario">usuário</span>!</h4>
-            </div>
 
             <div class="btn-nav-white">
                 <a href="./dashboard.html">
@@ -110,8 +106,11 @@
 </html>
 
 <script>
-    
-    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+    window.onload = ()=>{
+        atualizarFeed();
+    }
+
+    //b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
     function limparFormulario() {
         document.getElementById("form_postagem").reset();
@@ -137,7 +136,7 @@
 
             if (resposta.ok) {
                 window.alert("Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!");
-                window.location = "/dashboard/mural.html";
+                window.location = "/dashboard/forum.html";
                 limparFormulario();
                 finalizarAguardar();
             } else if (resposta.status == 404) {
@@ -173,7 +172,7 @@
 
             if (resposta.ok) {
                 window.alert("Post deletado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
-                window.location = "/dashboard/mural.html"
+                window.location = "/dashboard/forum.html"
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
             } else {
@@ -217,10 +216,8 @@
 
                         spanID.innerHTML = "ID: <b>" + publicacao.idAviso + "</b>";
                         spanTitulo.innerHTML = "Título: <b>" + publicacao.titulo + "</b>";
-                        spanNome.innerHTML = "Autor: <b>" + publicacao.nome + "</b>";
+                        spanNome.innerHTML = "Autor: <b>" + publicacao.nomeUsuario + "</b>";
                         divDescricao.innerHTML = "Descrição: <b>" + publicacao.descricao + "</b>";
-                        btnEditar.innerHTML = "Editar";
-                        btnDeletar.innerHTML = "Deletar";
 
                         divPublicacao.className = "publicacao";
                         spanTitulo.id = "inputNumero" + publicacao.idAviso;
@@ -230,25 +227,15 @@
 
                         divButtons.className = "div-buttons"
 
-                        btnEditar.className = "publicacao-btn-editar"
-                        btnEditar.id = "btnEditar" + publicacao.idAviso;
-                        btnEditar.setAttribute("onclick", `editar(${publicacao.idAviso})`);
-
-                        btnDeletar.className = "publicacao-btn-editar"
-                        btnDeletar.id = "btnDeletar" + publicacao.idAviso;
-                        btnDeletar.setAttribute("onclick", `deletar(${publicacao.idAviso})`);
-
                         divPublicacao.appendChild(spanID);
                         divPublicacao.appendChild(spanNome);
                         divPublicacao.appendChild(spanTitulo);
                         divPublicacao.appendChild(divDescricao);
                         divPublicacao.appendChild(divButtons);
-                        divButtons.appendChild(btnEditar);
-                        divButtons.appendChild(btnDeletar);
                         feed.appendChild(divPublicacao);
                     }
 
-                    finalizarAguardar();
+                    // finalizarAguardar();
                 });
             } else {
                 throw ('Houve um erro na API!');
