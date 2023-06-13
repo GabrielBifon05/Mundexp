@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/estilo.css">
-    <link rel="stylesheet" href="css/roleta.css">
+    <link rel="stylesheet" href="css/carrossel.css">
     <link rel="shortcut icon" href="assets/icon/favicon.ico" />
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap"
@@ -22,6 +22,7 @@
             <li><a href="index.html">Home</a></li>
             <li><a href="dashboard/dashboard.html">Comparativo</a></li>
             <li><a href="dashboard/forum.html">Fórum</a></li>
+            <li><a href="formulario.html">Contato</a></li>
             <a href="cadastro.html"><button class="btnCadastro">Cadastro</button></a>
             <a href="login.html"><button class="btnLogin">Login</button></a>
         </ul>
@@ -49,22 +50,70 @@
         <div class="img"></div>
     </div>
     <div class="index_cards">
-        <!-- <div class="wrapper">
-            <div class="container">
-              <canvas id="wheel"></canvas>
-              <button id="spin-btn">Spin</button>
-              <img src="spinner-arrow-.svg" alt="spinner-arrow" />
-            </div>
-            <div id="final-value">
-              <p>Click On The Spin Button To Start</p>
-            </div>
-          </div> -->
-          <!-- Chart JS -->
-          <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script> -->
-          <!-- Chart JS Plugin for displaying text over chart -->
-          <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.1.0/chartjs-plugin-datalabels.min.js"></script> -->
-          <!-- Script -->
-          <!-- <script src="js/roleta_script.js"></script> -->
+        <div class="barra"></div>
+        <h4>Cards Informativos</h4>
+        <ul class="cards">
+            <li>
+                <a href="https://g1.globo.com/fantastico/noticia/2023/06/11/incendios-no-canada-indicam-que-a-humanidade-esta-vivendo-a-era-do-fogo-aponta-professor.ghtml" class="card">
+                  <img src="assets/img/infoCanada.jpg" class="card__image" alt="" />
+                  <div class="card__overlay">
+                    <div class="card__header">
+                      <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>                 
+                      <img class="card__thumb" src="assets/img/canada-flag-9.gif" alt="" />
+                      <div class="card__header-text">
+                        <h3 class="card__title">G1 Globo</h3>
+                      </div>          
+                    </div>
+                    <p class="card__description">Incêndios no Canadá indicam que a humanidade está vivendo a ‘Era do Fogo’, aponta professor</p>
+                  </div>
+                </a>
+              </li>  
+            <li>
+                <a href="https://www1.folha.uol.com.br/mercado/2023/06/eua-veem-brasil-como-possivel-rota-para-china-roubar-segredos-industriais.shtml" class="card">
+                  <img src="assets/img/infoEua.jpg" class="card__image" alt="" />
+                  <div class="card__overlay">
+                    <div class="card__header">
+                      <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>                 
+                      <img class="card__thumb" src="assets/img/gif-de-bandeiras-do-eua-0.gif" alt="" />
+                      <div class="card__header-text">
+                        <h3 class="card__title">Folha</h3>
+                      </div>          
+                    </div>
+                    <p class="card__description">EUA veem Brasil como possível rota para China roubar segredos industriais</p>
+                  </div>
+                </a>
+              </li>  
+            <li>
+                <a href="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.tudocelular.com%2Fmercado%2Fnoticias%2Fn207335%2Fvivo-deixa-venda-smartphones-alemanha-mercado.html&psig=AOvVaw2_WGpiDpMLGZJvfkNzbY9c&ust=1686708975843000&source=images&cd=vfe&ved=0CBMQjhxqFwoTCNCwqdyWv_8CFQAAAAAdAAAAABAE" class="card">
+                  <img src="assets/img/infoAlemanha.jpg" class="card__image" alt="" />
+                  <div class="card__overlay">
+                    <div class="card__header">
+                      <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>                 
+                      <img class="card__thumb" src="assets/img/alemanha-imagem-animada-0011.gif" alt="" />
+                      <div class="card__header-text">
+                        <h3 class="card__title">TudoCelular</h3>
+                      </div>          
+                    </div>
+                    <p class="card__description">Vivo encerra venda de smartphones na Alemanha após outras chinesas abandonarem o país</p>
+                  </div>
+                </a>
+              </li>  
+            <li>
+              <a href="https://petronoticias.com.br/nova-usina-nuclear-dos-emirados-arabes-unidos-entra-em-etapa-de-testes-finais/" class="card">
+                <img src="assets/img/infoEmirados.jpg" class="card__image" alt="" />
+                <div class="card__overlay">
+                  <div class="card__header">
+                    <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>                 
+                    <img class="card__thumb" src="assets/img/bandeira_emirados_arabes.gif" alt="" />
+                    <div class="card__header-text">
+                      <h3 class="card__title">Petronotícias</h3>
+                    </div>          
+                  </div>
+                  <p class="card__description">Nova usina nuclear dos Emirados Árabes Unidos entra em etapa de testes finais</p>
+                </div>
+              </a>
+            </li>    
+          </ul>
     </div>
     <div class="index_dashboard">
         <div class="barraMenor"></div>
